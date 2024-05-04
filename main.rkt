@@ -11,6 +11,7 @@ Ethan   2024-04-29 8:45pm-9:30pm  45 min  Worked on color scheme variability in 
 Ethan   2024-04-29 12:30pm-1:30pm  30 min  Worked on shape variability in base/circle
 Colin 2024-05-01 4:35-5:40 Created image-series procedure using the helper procedures and worked on trying
                        to condense code and remove redundancy.
+Adarsh  2024-05-03 9pm-9:30pm     30 min  Worked on creating the final output and the image bachground.
 NAME    YYYY-MM-DD HH:MM-HH:MM  NN min  ACTIVITY
 |#
 
@@ -276,4 +277,21 @@ NAME    YYYY-MM-DD HH:MM-HH:MM  NN min  ACTIVITY
   (lambda (n width height)
     (above (circle n width height)
            (base n width height))))
-    ;(rgb 225 175 0)
+;(rgb 225 175 0)
+
+
+(define canvas
+  (lambda (width height)
+    (above
+      (solid-rectangle (* width 0.4) (* height 0.3) "Beige")
+      (solid-rectangle (* width 0.4) (* height 0.3) "Pink")
+      (solid-rectangle (* width 0.4) (* height 0.3) "Red")
+      (solid-rectangle (* width 0.4) (* height 0.3) "blue"))))
+    
+
+(define full-image
+  (lambda (n width height)
+    (overlay
+     (image-series n width height)
+     (canvas width height))))
+
