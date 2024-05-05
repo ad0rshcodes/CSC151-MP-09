@@ -204,35 +204,37 @@ the parameters ('n', 'width', and 'height') change.
                                          (color-mod 1)))))))
 
 
+;;; (sum-of-digits n) -> real?
+;;;   n : real?
+;;; Computes the sum of the digits of the input `n`.
+
+(define sum-of-digits
+  (lambda (n)
+    (cond
+      [(< n 10) n]
+      [else (+ (remainder n 10)
+               (sum-of-digits (quotient n 10)))])))
+
 ;;; (base-unit n width height) -> image?
 ;;;   n : real?
 ;;;   width : real?
 ;;;   height : real?
-;;;
-;;; Selects a base image based on the input `n` and creates the corresponding image with dimensions `width` and `height`.
-
+;;; Selects a base image based on the sum of digits of the input `n`
+;;; and creates the corresponding image with dimensions `width` and `height`.
 
 (define base-unit
   (lambda (n width height)
     (cond
-      [(and (<= 0 n) (> 200 n))
-       (base1 n width height)]
-      [(and (<= 200 n) (> 300 n))
-       (base2 n width height)]
-      [(and (<= 300 n) (> 400 n))
-       (base3 n width height)]
-      [(and (<= 400 n) (> 500 n))
-       (base4 n width height)]
-      [(and (<= 500 n) (> 600 n))
-       (base5 n width height)]
-      [(and (<= 600 n) (> 700 n))
-       (base6 n width height)]
-      [(and (<= 700 n) (> 800 n))
-       (base7 n width height)]
-      [(and (<= 800 n) (>= 999 n))
-       (base8 n width height)])))
-     
-
+      [(<= (sum-of-digits n) 3) (base1 n width height)]
+      [(<= (sum-of-digits n) 6) (base2 n width height)]
+      [(<= (sum-of-digits n) 9) (base3 n width height)]
+      [(<= (sum-of-digits n) 12) (base4 n width height)]
+      [(<= (sum-of-digits n) 15) (base5 n width height)]
+      [(<= (sum-of-digits n) 18) (base6 n width height)]
+      [(<= (sum-of-digits n) 21) (base7 n width height)]
+      [(<= (sum-of-digits n) 24) (base8 n width height)]
+      [else (base1 n width height)])))
+    
 
 ;;; (base n width height) -> image?
 ;;;   n : real?
