@@ -9,18 +9,18 @@
 #|
 Ethan   2024-04-29 7:30pm-8:30pm  60 min  Worked on center triangle/squares/circle
 Ethan   2024-04-29 8:45pm-9:30pm  45 min  Worked on color scheme variability in base/circle
-Ethan   2024-04-29 12:30pm-1:30pm  30 min  Worked on shape variability in base/circle
+Ethan   2024-04-29 12:30pm-1:15pm  45 min  Worked on shape variability in base/circle
 Colin 2024-05-01 4:40pm-5:40pm 60 min Created center-piece procedure using the helper procedures and worked on trying
                        to condense code and remove redundancy.
 Colin 2024-05-03 2:45pm-3:30pm 45 min Worked on writing textual description
 Colin 2024-05-03 4:30pm-5:15pm 60 min Finished writing textual description
-Ethan   2024-04-29 2:30pm-3:30pm  60 min  Worked on sketch and condensing circle/square code.
+Ethan   2024-05-03 2:30pm-3:30pm  60 min  Worked on sketch and condensing circle/square code.
 Adarsh  2024-05-03 9pm-9:30pm     30 min  Worked on creating the final output and the image bachground.
-Ethan    2024-05-04 10:30 AM -11:15am  45 min  Worked on adding some more variablilty with the canvas
+Ethan    2024-05-04 10:30AM-11:30am  60 min  Worked on adding some more variablilty with the canvas
                                               and the circle/squares.
 Colin 2024-05-04 8:45pm-9:30pm 45 min Inputted some sample examples for our image-series procedure to ensure it was working correctly
 Adarsh/Colin  2024-05-05 7am-8pm     60 min  Cleaned the code base, added styling, created documentation.
-Ethan         2024-05-04 4:00pm-5:00pm  60 min  Included rotate-hue to be applied based on values of n.
+Ethan         2024-05-04 4:00pm-5:30pm  90 min  Included rotate-hue to be applied based on values of n.
 |#
 
 ; +--------------+---------------------------------------------------
@@ -68,8 +68,8 @@ the parameters ('n', 'width', and 'height') change.
             (solid-square (* 1/8 width) (rgb 255 255 255)))
            (beside
             (solid-square (* 1/8 width) (rgb 254 254 254))
-            (solid-square (* 1/8 width) (rgb 0 0 0))))
-    (solid-rectangle (* 1/4 width) (* 1/8 width) (rgb 60 1 220))))
+            (solid-square (* 1/8 width) (rgb 0 0 0)))
+    (solid-rectangle (* 1/4 width) (* 1/8 width) (rgb 60 1 220)))))
 
 
 ;;; (base2 n width height) -> image?
@@ -254,8 +254,6 @@ the parameters ('n', 'width', and 'height') change.
          (beside unit
                  (solid-square (* 1/8 width) (rgb 0 0 0 0))
                  (vflip unit))]
-        [(zero? (remainder n 5))
-         unit]
         [else
          unit]))))
 
@@ -277,11 +275,11 @@ the parameters ('n', 'width', and 'height') change.
         [(zero? (remainder n 9))
          (beside unit spacer unit)]
         [(zero? (remainder n 4))
-         (beside (scale unit .5))
+         (beside (scale unit .5)
          spacer
          (scale unit .5)
          spacer
-         (scale unit .5)]
+         (scale unit .5))]
         [else
          unit]))))
 
