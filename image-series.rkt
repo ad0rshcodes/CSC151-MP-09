@@ -69,7 +69,7 @@ the parameters ('n', 'width', and 'height') change.
            (beside
             (solid-square (* 1/8 width) (rgb 254 254 254))
             (solid-square (* 1/8 width) (rgb 0 0 0)))
-    (solid-rectangle (* 1/4 width) (* 1/8 width) (rgb 60 1 220)))))
+           (solid-rectangle (* 1/4 width) (* 1/8 width) (rgb 60 1 220)))))
 
 
 ;;; (base2 n width height) -> image?
@@ -278,10 +278,10 @@ the parameters ('n', 'width', and 'height') change.
          (beside unit spacer unit)]
         [(zero? (remainder n 4))
          (beside (scale unit .5)
-         spacer
-         (scale unit .5)
-         spacer
-         (scale unit .5))]
+                 spacer
+                 (scale unit .5)
+                 spacer
+                 (scale unit .5))]
         [else
          unit]))))
 
@@ -305,22 +305,25 @@ the parameters ('n', 'width', and 'height') change.
 
 (define canvas
   (lambda (n width height)
-    (let ([color-mod
-           (lambda (digit)
-             (remainder (* digit (+ 1 n)) 255))])
-      (above
-       (solid-rectangle (* width 1) (* height 0.3) (rgb (color-mod 244)
-                                                        (color-mod 244)
-                                                        (color-mod 220)))
-       (solid-rectangle (* width 1) (* height 0.3) (rgb (color-mod 254)
-                                                        (color-mod 191)
-                                                        (color-mod 202)))
-       (solid-rectangle (* width 1) (* height 0.3) (rgb (color-mod 254)
-                                                        (color-mod 0)
-                                                        (color-mod 0)))
-       (solid-rectangle (* width 1) (* height 0.3) (rgb (color-mod 244)
-                                                        (color-mod 244)
-                                                        (color-mod 220)))))))
+    (define color-mod
+      (lambda (digit)
+        (remainder (* digit (+ 1 n)) 255)))
+
+    (define (create-rectangle color)
+      (solid-rectangle (* width 1) (* height 0.3) color))
+
+    (define (stack-rectangles rects)
+      (if (null? rects)
+          (solid-rectangle 0 0 (rgb 0 0 0 0)) ; Empty rectangle
+          (above (car rects) (stack-rectangles (cdr rects)))))
+
+    (define colors
+      (list (rgb (color-mod 244) (color-mod 244) (color-mod 220))
+            (rgb (color-mod 254) (color-mod 191) (color-mod 202))
+            (rgb (color-mod 254) (color-mod 0) (color-mod 0))
+            (rgb (color-mod 244) (color-mod 244) (color-mod 220))))
+
+    (stack-rectangles (map create-rectangle colors))))
 
 ;;; (rotate-hue c angle) -> image?
 ;;;    img : image?
