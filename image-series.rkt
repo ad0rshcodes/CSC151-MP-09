@@ -285,9 +285,9 @@ the parameters ('n', 'width', and 'height') change.
        (base6 n width height)]
       [(and (<= 700 n) (> 800 n))
        (base7 n width height)]
-      [(and (<= 800 n) (> 900 n))
-       (base8 n width height)]
-      [(and (<= 900 n) (> 999 n))])))
+      [(and (<= 800 n) (> 999 n))
+       (base8 n width height)])))
+     
 
 
 ;;; (base n width height) -> image?
