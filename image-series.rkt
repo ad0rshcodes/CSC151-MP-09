@@ -20,6 +20,7 @@ Ethan    2024-05-04 10:30 AM -11:15am  45 min  Worked on adding some more variab
                                               and the circle/squares.
 Colin 2024-05-04 8:45pm-9:30pm 45 min Inputted some sample examples for our image-series procedure to ensure it was working correctly
 Adarsh/Colin  2024-05-05 7am-8pm     60 min  Cleaned the code base, added styling, created documentation.
+Ethan         2024-05-04 4:00pm-5:00pm  60 min  Included rotate-hue to be applied based on values of n.
 |#
 
 ; +--------------+---------------------------------------------------
@@ -60,32 +61,15 @@ the parameters ('n', 'width', and 'height') change.
 
 (define base1
   (lambda (n width height)
-    (let ([color-mod
-           (lambda (digit)
-             (remainder (* digit (+ 1 n)) 255))])
-      (above (solid-equilateral-triangle (* 1/4 width) (rgb (color-mod 60)
-                                                            (color-mod 1)
-                                                            (color-mod 200)))
-             (solid-rectangle (* 1/4 width) (* 1/200 width) (rgb (color-mod 254)
-                                                                 (color-mod 1)
-                                                                 (color-mod 1)))
-             (beside
-              (solid-square (* 1/8 width) (rgb (color-mod 254)
-                                               (color-mod 200)
-                                               (color-mod 1)))
-              (solid-square (* 1/8 width) (rgb (color-mod 254)
-                                               (color-mod 254)
-                                               (color-mod 254))))
-             (beside
-              (solid-square (* 1/8 width) (rgb (color-mod 254)
-                                               (color-mod 254)
-                                               (color-mod 254)))
-              (solid-square (* 1/8 width) (rgb (color-mod 1)
-                                               (color-mod 1)
-                                               (color-mod 1))))
-             (solid-rectangle (* 1/4 width) (* 1/8 width) (rgb (color-mod 60)
-                                                               (color-mod 1)
-                                                               (color-mod 220)))))))
+    (above (solid-equilateral-triangle (* 1/4 width) (rgb 60 0 200))
+           (solid-rectangle (* 1/4 width) (* 1/200 width) (rgb 255 0 0))
+           (beside
+            (solid-square (* 1/8 width) (rgb 255 200 0))
+            (solid-square (* 1/8 width) (rgb 255 255 255)))
+           (beside
+            (solid-square (* 1/8 width) (rgb 254 254 254))
+            (solid-square (* 1/8 width) (rgb 0 0 0))))
+    (solid-rectangle (* 1/4 width) (* 1/8 width) (rgb 60 1 220))))
 
 
 ;;; (base2 n width height) -> image?
@@ -100,29 +84,15 @@ the parameters ('n', 'width', and 'height') change.
     (let ([color-mod
            (lambda (digit)
              (remainder (* digit (+ 1 n)) 255))])
-      (above (solid-equilateral-triangle (* 1/4 width) (rgb (color-mod 30)
-                                                            (color-mod 1)
-                                                            (color-mod 100)))
-             (solid-rectangle (* 1/4 width) (* 1/200 width) (rgb (color-mod 254)
-                                                                 (color-mod 1)
-                                                                 (color-mod 1)))
+      (above (solid-equilateral-triangle (* 1/4 width) (rgb 30 0 100))
+             (solid-rectangle (* 1/4 width) (* 1/200 width) (rgb 255 0 0))
              (beside
-              (solid-square (* 1/8 width) (rgb (color-mod 254)
-                                               (color-mod 200)
-                                               (color-mod 1)))
-              (solid-square (* 1/8 width) (rgb (color-mod 254)
-                                               (color-mod 254)
-                                               (color-mod 254))))
-             (solid-rectangle (* 1/4 width) (* 1/8 width) (rgb (color-mod 30)
-                                                               (color-mod 1)
-                                                               (color-mod 120)))
+              (solid-square (* 1/8 width) (rgb 254 200 0))
+              (solid-square (* 1/8 width) (rgb 254 254 254)))
+             (solid-rectangle (* 1/4 width) (* 1/8 width) (rgb 30 0 120))
              (beside
-              (solid-square (* 1/8 width) (rgb (color-mod 254)
-                                               (color-mod 254)
-                                               (color-mod 254)))
-              (solid-square (* 1/8 width) (rgb (color-mod 1)
-                                               (color-mod 1)
-                                               (color-mod 1))))))))
+              (solid-square (* 1/8 width) (rgb 255 255 255))
+              (solid-square (* 1/8 width) (rgb 0 0 0)))))))
 
 
 ;;; (base3 n width height) -> image?
@@ -137,29 +107,15 @@ the parameters ('n', 'width', and 'height') change.
     (let ([color-mod
            (lambda (digit)
              (remainder (* digit (+ 1 n)) 255))])
-      (above (solid-equilateral-triangle (* 1/4 width) (rgb (color-mod 60)
-                                                            (color-mod 1)
-                                                            (color-mod 200)))
-             (solid-rectangle (* 1/4 width) (* 1/200 width) (rgb (color-mod 254)
-                                                                 (color-mod 1)
-                                                                 (color-mod 1)))
-             (solid-rectangle (* 1/4 width) (* 1/8 width) (rgb (color-mod 60)
-                                                               (color-mod 1)
-                                                               (color-mod 220)))
+      (above (solid-equilateral-triangle (* 1/4 width) (rgb 60 0 200))
+             (solid-rectangle (* 1/4 width) (* 1/200 width) (rgb 255 0 0))
+             (solid-rectangle (* 1/4 width) (* 1/8 width) (rgb 60 0 220))
              (beside
-              (solid-square (* 1/8 width) (rgb (color-mod 254)
-                                               (color-mod 200)
-                                               (color-mod 1)))
-              (solid-square (* 1/8 width) (rgb (color-mod 254)
-                                               (color-mod 254)
-                                               (color-mod 254))))
+              (solid-square (* 1/8 width) (rgb 255 200 0))
+              (solid-square (* 1/8 width) (rgb 255 255 255)))
              (beside
-              (solid-square (* 1/8 width) (rgb (color-mod 254)
-                                               (color-mod 254)
-                                               (color-mod 254)))
-              (solid-square (* 1/8 width) (rgb (color-mod 1)
-                                               (color-mod 1)
-                                               (color-mod 1))))))))
+              (solid-square (* 1/8 width) (rgb 255 255 255))
+              (solid-square (* 1/8 width) (rgb 0 0 0)))))))
 
 ;;; (base4 n width height) -> image?
 ;;;   n : real?
@@ -173,29 +129,15 @@ the parameters ('n', 'width', and 'height') change.
     (let ([color-mod
            (lambda (digit)
              (remainder (* digit (+ 1 n)) 255))])
-      (above (solid-equilateral-triangle (* 1/4 width) (rgb (color-mod 60)
-                                                            (color-mod 1)
-                                                            (color-mod 200)))
-             (solid-rectangle (* 1/4 width) (* 1/200 width) (rgb (color-mod 254)
-                                                                 (color-mod 1)
-                                                                 (color-mod 1)))
+      (above (solid-equilateral-triangle (* 1/4 width) (rgb 60 0 200))
+             (solid-rectangle (* 1/4 width) (* 1/200 width) (rgb 255 0 0))
              (beside
-              (solid-circle (* 1/8 width) (rgb (color-mod 254)
-                                               (color-mod 200)
-                                               (color-mod 1)))
-              (solid-circle (* 1/8 width) (rgb (color-mod 254)
-                                               (color-mod 254)
-                                               (color-mod 254))))
+              (solid-circle (* 1/8 width) (rgb 255 200 0))
+              (solid-circle (* 1/8 width) (rgb 255 255 255)))
              (beside
-              (solid-circle (* 1/8 width) (rgb (color-mod 254)
-                                               (color-mod 254)
-                                               (color-mod 254)))
-              (solid-circle (* 1/8 width) (rgb (color-mod 1)
-                                               (color-mod 1)
-                                               (color-mod 1))))
-             (solid-rectangle (* 1/4 width) (* 1/8 width) (rgb (color-mod 60)
-                                                               (color-mod 1)
-                                                               (color-mod 220)))))))
+              (solid-circle (* 1/8 width) (rgb 255 255 255))
+              (solid-circle (* 1/8 width) (rgb 0 0 0)))
+             (solid-rectangle (* 1/4 width) (* 1/8 width) (rgb 60 0 220))))))
 
 ;;; (base5 n width height) -> image?
 ;;;   n : real?
@@ -261,12 +203,14 @@ the parameters ('n', 'width', and 'height') change.
                                          (color-mod 175)
                                          (color-mod 1)))))))
 
+
 ;;; (base-unit n width height) -> image?
 ;;;   n : real?
 ;;;   width : real?
 ;;;   height : real?
 ;;;
 ;;; Selects a base image based on the input `n` and creates the corresponding image with dimensions `width` and `height`.
+
 
 (define base-unit
   (lambda (n width height)
@@ -285,7 +229,7 @@ the parameters ('n', 'width', and 'height') change.
        (base6 n width height)]
       [(and (<= 700 n) (> 800 n))
        (base7 n width height)]
-      [(and (<= 800 n) (> 999 n))
+      [(and (<= 800 n) (>= 999 n))
        (base8 n width height)])))
      
 
@@ -311,11 +255,7 @@ the parameters ('n', 'width', and 'height') change.
                  (solid-square (* 1/8 width) (rgb 0 0 0 0))
                  (vflip unit))]
         [(zero? (remainder n 5))
-         (beside unit
-                 (solid-square (* 1/16 width) (rgb 0 0 0 0))
-                 (vflip unit)
-                 (solid-square( * 1/16 width) (rgb 0 0 0 0))
-                 unit)]
+         unit]
         [else
          unit]))))
 
@@ -337,11 +277,11 @@ the parameters ('n', 'width', and 'height') change.
         [(zero? (remainder n 9))
          (beside unit spacer unit)]
         [(zero? (remainder n 4))
-         (beside (scale unit .5)
-                 spacer
-                 (scale unit .5)
-                 spacer
-                 (scale unit .5))]
+         (beside (scale unit .5))
+         spacer
+         (scale unit .5)
+         spacer
+         (scale unit .5)]
         [else
          unit]))))
 
@@ -382,6 +322,23 @@ the parameters ('n', 'width', and 'height') change.
                                                         (color-mod 244)
                                                         (color-mod 220)))))))
 
+;;; (rotate-hue c angle) -> image?
+;;;    img : image?
+;;; angle: real?
+;;; Takes in an image a adjust the hue value by a number of degree determined by "angle".
+
+(define rotate-hue-p1
+  (lambda (img angle)
+    (hsv->rgb (hsv (if (> (+(hsv-hue (rgb->hsv img)) angle) 360)
+                       (remainder (+(hsv-hue (rgb->hsv img)) angle) 360)
+                       (+(hsv-hue (rgb->hsv img)) angle))  
+                   (hsv-saturation (rgb->hsv img))
+                   (hsv-value  (rgb->hsv img))))))
+
+(define rotate-hue
+  (lambda (img angle)
+    (pixel-map (cut (rotate-hue-p1 <> angle)) img)))
+
 ; +-------------------+----------------------------------------------
 ; | Primary procedure |
 ; +-------------------+
@@ -396,7 +353,7 @@ the parameters ('n', 'width', and 'height') change.
 
 (define image-series
   (lambda (n width height)
-    (overlay
-     (center-piece n width height)
-     (canvas n width height))))
+    (rotate-hue (overlay
+                 (center-piece n width height)
+                 (canvas n width height)) n)))
 
