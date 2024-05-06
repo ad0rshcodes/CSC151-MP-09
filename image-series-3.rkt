@@ -21,6 +21,7 @@ Ethan    2024-05-04 10:30AM-11:30am  60 min  Worked on adding some more variabli
 Colin 2024-05-04 8:45pm-9:30pm 45 min Inputted some sample examples for our image-series procedure to ensure it was working correctly
 Adarsh/Colin  2024-05-05 7am-8pm     60 min  Cleaned the code base, added styling, created documentation.
 Ethan         2024-05-04 4:00pm-5:30pm  90 min  Included rotate-hue to be applied based on values of n.
+Colin 2024-05-04 6:45pm-7:45pm 90 min Edited design plans and make powerpoint presentation
 |#
 
 ; +--------------+---------------------------------------------------
@@ -43,9 +44,9 @@ procedure creates a layered circle image with dynamic colors that change based o
 then arranges these circle images in varying configurations depending on 'n'. The 'canvas' procedure creates a
 vertically stacked background of colored rectangles whose colors vary based on 'n' again using the 'color-mod' procedure. Lastly, the 'center-piece' procedure
 creates the main image by stacking a circle image above a base image. The 'image-series' procedure then overlays
-this center piece onto the background canvas completing the image. Furthermore, the series of procedures use
-recursion, conditional statements, and color manipulation (through the 'color-mod' procedure) to create a distinct image each time
-the parameters ('n', 'width', and 'height') change.
+this center piece onto the background canvas, and the 'rotate-hue' procedure adjusts the overall hue of the final image based on 'n'.
+Furthermore, the series of procedures use recursion, conditional statements, and color manipulation to create
+a distinct image each time the parameters ('n', 'width', and 'height') change.
 |#
 
 ;;; (base1 n width height) -> image?
