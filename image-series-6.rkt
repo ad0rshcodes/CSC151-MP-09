@@ -38,7 +38,8 @@ Ethan         2024-05-04 4:00pm-5:30pm  90 min  Included rotate-hue to be applie
 Adarsh        2024-05-04 4:00pm-6pm    120 min  Added recursive functions to generate images.
 Colin         2024-05-04 6:45pm-7:45pm  90 min  Edited design plans and make powerpoint presentation.
 Adarsh        2024-05-04 8:00pm-11:00pm    180 min  Refactored the code base to smaller helper function and add more recursive calls.
-Colin         2024-05-04 8:00pm-11:00pm    180 min  Worked on the design goals and presentation. 
+Colin         2024-05-04 8:00pm-11:00pm    180 min  Worked on the design goals and presentation.
+Ethan         2024-05-04 8:00pm-9:00pm      60 min  Worked on fixing some bugs with colour changes and recursions. 
 |#
 
 ; +--------------+---------------------------------------------------
@@ -85,10 +86,12 @@ Used in functions rotate-hue-p1 and rotate-hue
 What are two instances of recursion in your program? 
 
 > Recursion has being used in `sum-of-digits` (to calculate the sume of digits of 'n')
-and `canvas` functions (to generate the final image by stacking figures in a list). 
+and `create-rectangles` and `stack-rectangles` functions (to generate rectangles and stack them). 
 
 Describe a piece of code that you are particularly proud of.
 
+> We are most proud of our `canvas` function and its helper functions because of the their conciseness
+we achieved through recursions. 
 
 |#
 
@@ -369,11 +372,11 @@ Describe a piece of code that you are particularly proud of.
         (above (car rects) (stack-rectangles (cdr rects))))))
 
 
-;;; (color-mod digit) -> rgb?
+;;; (color-mod-2 digit) -> rgb?
 ;;;   digit : real?
 ;;; Generates an RGB color based on the input `digit` by applying modular arithmetic.
 
-(define color-mod2
+(define color-mod-2
   (lambda (digit)
     (rgb (remainder (* digit 3) 255)
          (remainder (* digit 5) 255)
@@ -387,7 +390,7 @@ Describe a piece of code that you are particularly proud of.
 
 (define canvas
   (lambda (n width height)
-    (stack-rectangles (create-rectangles (map color-mod2 '(244 254 254 244)) width height))))
+    (stack-rectangles (create-rectangles (map color-mod-2 '(244 254 254 244)) width height))))
 
 ;;; (rotate-hue-p1 img angle) -> image?
 ;;;   img : image?

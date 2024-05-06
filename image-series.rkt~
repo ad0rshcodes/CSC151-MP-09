@@ -85,7 +85,7 @@ Used in functions rotate-hue-p1 and rotate-hue
 What are two instances of recursion in your program? 
 
 > Recursion has being used in `sum-of-digits` (to calculate the sume of digits of 'n')
-and `create-rectangles` and `stack-rectangles` functions (to generate rectangles and stack them). 
+and `canvas` functions (to generate the final image by stacking figures in a list). 
 
 Describe a piece of code that you are particularly proud of.
 

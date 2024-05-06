@@ -59,8 +59,8 @@ one of these structures based on the input 'n'. The 'base' procedure then furthe
 potentially flipping it or adding additional elements based on the input 'n'. Also, the 'circle-unit'
 procedure creates a layered circle image with dynamic colors that change based on 'n' using the 'color-mod' procedure. The 'circle' procedure
 then arranges these circle images in varying configurations depending on 'n'. The 'canvas' procedure creates a
-vertically stacked background of colored rectangles whose colors vary based on 'n' again using the 'color-mod' procedure. Lastly, the 'center-piece' procedure
-creates the main image by stacking a circle image above a base image. The 'image-series' procedure then overlays
+vertically stacked background of colored rectangles using 'color-mod2', 'create-rectangles', and 'stack-rectangles' as helper procedures, with colors varying based on 'n' using 'color-mod2'.
+Lastly, the 'center-piece' procedure creates the main image by stacking a circle image above a base image. The 'image-series' procedure then overlays
 this center piece onto the background canvas, and the 'rotate-hue' procedure adjusts the overall hue of the final image based on 'n'.
 Furthermore, the series of procedures use recursion, conditional statements, and color manipulation to create
 a distinct image each time the parameters ('n', 'width', and 'height') change.
@@ -85,7 +85,7 @@ Used in functions rotate-hue-p1 and rotate-hue
 What are two instances of recursion in your program? 
 
 > Recursion has being used in `sum-of-digits` (to calculate the sume of digits of 'n')
-and `create-rectangles` and `stack-rectangles` functions (to generate rectangles and stack them). 
+and `canvas` functions (to generate the final image by stacking figures in a list). 
 
 Describe a piece of code that you are particularly proud of.
 
@@ -373,7 +373,7 @@ Describe a piece of code that you are particularly proud of.
 ;;;   digit : real?
 ;;; Generates an RGB color based on the input `digit` by applying modular arithmetic.
 
-(define color-mod
+(define color-mod2
   (lambda (digit)
     (rgb (remainder (* digit 3) 255)
          (remainder (* digit 5) 255)
@@ -387,7 +387,7 @@ Describe a piece of code that you are particularly proud of.
 
 (define canvas
   (lambda (n width height)
-    (stack-rectangles (create-rectangles (map color-mod '(244 254 254 244)) width height))))
+    (stack-rectangles (create-rectangles (map color-mod2 '(244 254 254 244)) width height))))
 
 ;;; (rotate-hue-p1 img angle) -> image?
 ;;;   img : image?
